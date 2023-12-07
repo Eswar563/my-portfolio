@@ -1,0 +1,32 @@
+.navbar{
+    background-color: #071718 !important;
+}
+
+.navbar-brand{
+    color: #ffff !important;
+    text-decoration: none !important;
+    font-family: 'Manrope' !important;
+}
+
+.navbar-toggler{
+    background-color: #00d37f;
+}
+
+.nav-link{
+    color: #ffff !important;
+    font-family: HKG-med !important;
+    font-size: 20px;
+}
+.nav-link:hover {
+    color: #00d37f !important; /* Change the text color on hover */
+}
+
+.dropdown-item:hover {
+    background-color: #00d37f;
+    font-family: HKG-med 
+}
+.dropdown-item {
+    font-family: HKG-med 
+}
+
+
