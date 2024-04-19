@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setInstagramPhotos } from '../../redux/actions/instagramPhotosActions';
-
+import './index.css'
 const InstagramPhotos = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.instagram.instagramPhotos);
 
-  const accessToken = 'IGQWRQdE5YSkpuOUYtTDJfM2hIaGFqVkZAVSzF3ZA2JCenNwQTdIM0NFbHk5LWtNbXh1YVVFM0YyMXVFdUpQM09fUWlQQTBQMUJHMTBIdFhFM2hWSUZAwMlM0bENGX2JDTExhTndfbXZAXdXpiWmhjUUNONU12WHdpb0UZD';
+  const accessToken = 'IGQWRNWjdSendTZAUpQZAHI1MHdGcG1xZADhZAWVpRVUZAaNHhPQlFyZAEhsX205TlR6eTZAWaWtIaDlKYzRORUY3S1JXeWJ5MTZA3SGMwQVJIcUFsYkxmVElpR0xGWHhOREFmN29aNlpXNUJrSk5NMkstYl9SMEQ1OV9HNGMZD';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +14,7 @@ const InstagramPhotos = () => {
         const response = await fetch(
           `https://graph.instagram.com/v12.0/me/media?fields=id,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${accessToken}`
         );
-
+        console.log('response>>>>>>>>>>>>>>>>>', response)
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
