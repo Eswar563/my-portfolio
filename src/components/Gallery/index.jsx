@@ -6,13 +6,13 @@ const InstagramPhotos = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.instagram.instagramPhotos);
 
-  const accessToken = 'IGQWRNWjdSendTZAUpQZAHI1MHdGcG1xZADhZAWVpRVUZAaNHhPQlFyZAEhsX205TlR6eTZAWaWtIaDlKYzRORUY3S1JXeWJ5MTZA3SGMwQVJIcUFsYkxmVElpR0xGWHhOREFmN29aNlpXNUJrSk5NMkstYl9SMEQ1OV9HNGMZD';
+  // const accessToken = 'IGQWRNWjdSendTZAUpQZAHI1MHdGcG1xZADhZAWVpRVUZAaNHhPQlFyZAEhsX205TlR6eTZAWaWtIaDlKYzRORUY3S1JXeWJ5MTZA3SGMwQVJIcUFsYkxmVElpR0xGWHhOREFmN29aNlpXNUJrSk5NMkstYl9SMEQ1OV9HNGMZD';
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://graph.instagram.com/v12.0/me/media?fields=id,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${accessToken}`
+          `http://localhost:3002/getSelectedImages`
         );
         console.log('response>>>>>>>>>>>>>>>>>', response)
         if (!response.ok) {
@@ -20,7 +20,8 @@ const InstagramPhotos = () => {
         }
 
         const data = await response.json();
-        const imagePhotos = data.data.filter(photo => photo.media_type === 'IMAGE');
+        console.log(data, "<>>><")
+        const imagePhotos = data.selectedImages.filter(photo => photo.url);
         dispatch(setInstagramPhotos(imagePhotos));
       } catch (error) {
         console.error('Error fetching Instagram photos:', error);
@@ -28,7 +29,7 @@ const InstagramPhotos = () => {
     };
 
     fetchData();
-  }, [dispatch, accessToken]);
+  }, [dispatch]); // //,accessToken
 
   return (
     <div className='gallery'>
@@ -36,7 +37,7 @@ const InstagramPhotos = () => {
       <ul className='ul'>
         {photos.map(photo => (
           <li className='li' key={photo.id}>
-            <img src={photo.media_url} alt={photo.caption} />
+            <img src={photo.url} alt={photo.url} />
           </li>
         ))}
       </ul>
